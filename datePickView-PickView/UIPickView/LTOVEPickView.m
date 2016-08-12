@@ -9,8 +9,8 @@
 #import "LTOVEPickView.h"
 #define topViewHeigh 35
 @interface LTOVEPickView ()<UIGestureRecognizerDelegate,UIPickerViewDataSource,UIPickerViewDelegate>{
-//    NSString *_sep;
-//    CGFloat _topViewMaxY;
+    //    NSString *_sep;
+    //    CGFloat _topViewMaxY;
 }
 
 @property (nonatomic,strong)NSDate *date;
@@ -30,7 +30,7 @@
 
 + (LTOVEPickView *)showPickViewWithHeigh:(CGFloat)heigh andDateArray:(NSArray *)dateArray andInitSelectArray:(NSArray *)array
 {
-   LTOVEPickView *view = [LTOVEPickView showPickViewWithHeigh:heigh andDateArray:dateArray];
+    LTOVEPickView *view = [LTOVEPickView showPickViewWithHeigh:heigh andDateArray:dateArray];
     
     
     //首次进入设置默认值
@@ -45,7 +45,7 @@
  */
 - (void)setValveWithselsetedArray:(NSArray *)array
 {
-//    int count = 0;
+    //    int count = 0;
     for (int i = 0; i < array.count; i ++) {
         NSString *title = array[i];
         NSArray *array = [self arrayWithCompontent:i];
@@ -58,7 +58,7 @@
                 
             }
         }
-   
+        
     }
     [self reloadAndSetRows];
 }
@@ -79,12 +79,12 @@
 + (LTOVEPickView *)dateObjWithHeigh:(CGFloat)heigh andPickModel:(UIDatePickerMode)pickModel andDateFormStr:(NSString *)formStr
 {
     
-//        [[UIApplication sharedApplication].keyWindow addSubview:datePick];
+    //        [[UIApplication sharedApplication].keyWindow addSubview:datePick];
     
     LTOVEPickView *view = [[LTOVEPickView alloc]initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
     view.formStr = formStr == nil ? @"yy-MM-dd" :formStr;
     
-//    增加通用子视图
+    //    增加通用子视图
     [view setUpSubViewsWithView:view andHeigh:heigh];
     
     UIDatePicker *datePick = [[UIDatePicker alloc]initWithFrame:CGRectMake(0, view.topViewMaxY, [UIScreen mainScreen].bounds.size.width, heigh)];
@@ -92,9 +92,9 @@
     NSLocale *local = [[NSLocale alloc]initWithLocaleIdentifier:@"zh_CN"];
     datePick.locale = local;
     datePick.datePickerMode = pickModel;
-    //    datePick.backgroundColor = [UIColor redColor];
+    datePick.backgroundColor = [UIColor whiteColor];
     view.userInteractionEnabled = YES;
-
+    
     [datePick reloadInputViews];
     
     view.datePicview = datePick;
@@ -102,7 +102,7 @@
     [view addSubview:datePick];
     //    view.backgroundColor = [UIColor greenColor];
     [datePick addTarget:view action:@selector(datePichChanged:) forControlEvents:UIControlEventValueChanged];
-//    result(view.date);
+    //    result(view.date);
     
     return view;
     
@@ -119,10 +119,15 @@
     [view setUpSubViewsWithView:view andHeigh:heigh];
     
     //标签数组
-    NSMutableArray *arr = [[NSMutableArray alloc]initWithObjects:@"0",@"0",@"0", nil];
+    NSMutableArray *arr = [NSMutableArray array];
+    for (int i = 0; i < dateArray.count; i ++) {
+        [arr addObject:@"0"];
+    }
     view.countArray = arr;
     //创建pickView
     UIPickerView *picView = [[UIPickerView alloc]initWithFrame:CGRectMake(0, view.topViewMaxY, [UIScreen mainScreen].bounds.size.width, heigh)];
+    picView.backgroundColor = [UIColor whiteColor];
+    picView.alpha = 1;
     view.picview = picView;
     picView.delegate = view;
     picView.dataSource = view;
@@ -133,9 +138,24 @@
     [view reloadAndSetRows];
     
     [view initSelectedStrArray];
+    
+    
+    
     return view;
 }
+/**
+ *  初始化PickView默认选中值
+ */
+- (void)initPickViewValue
+{
+    [self setDeleGatePickView];
+    
+}
 
+- (void)initDatePickViewValue
+{
+    [self datePichChanged:_datePicview];
+}
 /**
  *  初始化选中数组字符数组
  */
@@ -143,7 +163,7 @@
 {
     for (int i = 0; i < _countArray.count; i ++) {
         NSString *rows = _countArray[i];
-//        [_picview selectRow:[rows integerValue] inComponent:i animated:YES];
+        //        [_picview selectRow:[rows integerValue] inComponent:i animated:YES];
         
         //初始化选中数组
         if (!_selectedStrArray) {
@@ -175,10 +195,10 @@
 {
     for (NSInteger i = 0; i < _countArray.count; i ++) {
         NSArray *array = [self arrayWithCompontent:i];
-//        if (!_selectedArray) {
-//            _selectedArray = [NSMutableArray new];
-//        }
-//        [_selectedArray addObject:array];
+        //        if (!_selectedArray) {
+        //            _selectedArray = [NSMutableArray new];
+        //        }
+        //        [_selectedArray addObject:array];
         [_selectedArray replaceObjectAtIndex:i withObject:array];
     }
 }
@@ -193,11 +213,11 @@
 
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
 {
-//    NSArray *array = _dateArray[component];
-//    for (int i = 0; i < component; i++) {
-//        NSString *count = _countArray[i];
-//        array = [self getArrayWithArray:array count:[count integerValue]];
-//    }
+    //    NSArray *array = _dateArray[component];
+    //    for (int i = 0; i < component; i++) {
+    //        NSString *count = _countArray[i];
+    //        array = [self getArrayWithArray:array count:[count integerValue]];
+    //    }
     NSArray *array = [self arrayWithCompontent:component];
     return array.count;
     
@@ -206,12 +226,12 @@
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
     NSString *title = @"";
-        if (!_selectedArray) {
+    if (!_selectedArray) {
         _selectedArray = [NSMutableArray new];
     }
-//    [_selectedArray addObject:array];
+    //    [_selectedArray addObject:array];
     
-//    _selectedArray = selectArray;
+    //    _selectedArray = selectArray;
     
     NSArray *array = [self arrayWithCompontent:component];
     title = array[row];
@@ -221,33 +241,33 @@
 - (NSArray *)arrayWithCompontent:(NSInteger)commontent
 {
     NSArray *array = _dateArray[commontent];
-//    NSMutableArray *selectArray = [NSMutableArray new];
+    //    NSMutableArray *selectArray = [NSMutableArray new];
     for (int i = 0; i <commontent; i ++) {
         NSString *count = _countArray[i];
         array = [self getArrayWithArray:array count:[count integerValue]];
     }
     return array;
-
+    
 }
 
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
-    NSString *countStr = [NSString stringWithFormat:@"%ld",row];
+    NSString *countStr = [NSString stringWithFormat:@"%ld",(long)row];
     [_countArray replaceObjectAtIndex:component withObject:countStr];
     for (NSInteger i = component + 1;i < _countArray.count; i++) {
         [_countArray replaceObjectAtIndex:i withObject:@"0"];
     }
     [self reloadAndSetRows];
-//    NSLog(@"%@",_selectedArray);
+    //    NSLog(@"%@",_selectedArray);
     [self changeSelectedArray];
-//    [_selectedArray writeToFile:@"/Users/LTOVE/Desktop/xxxx.plist" atomically:YES];
+    //    [_selectedArray writeToFile:@"/Users/LTOVE/Desktop/xxxx.plist" atomically:YES];
     [self selectedStrChangedWithDidcomponent:component selectedRow:row];
 }
 
 - (void)selectedStrChangedWithDidcomponent:(NSInteger)component selectedRow:(NSInteger)row
 {
-
+    
     for (NSInteger i = component; i <_countArray.count; i ++) {
         NSArray *array = _selectedArray[i];
         NSString *str = _countArray[i];
@@ -256,21 +276,29 @@
         
     }
     
+    [self setDeleGatePickView];
     
+    
+}
+/**
+ *  设置pickView代理
+ */
+- (void)setDeleGatePickView
+{
     //设置代理方法
     if ([_delegate respondsToSelector:@selector(pickViewChangedWithStr:)]) {
-//        返回字符串
+        //        返回字符串
         NSMutableString *str = [NSMutableString string];
         for (NSString *sttr in _selectedStrArray) {
-//            CGFloat x = str.length;
+            //            CGFloat x = str.length;
             if (str.length == 0) {
                 
                 str = [NSMutableString stringWithFormat:@"%@",sttr];
             }else
                 
-            [str appendFormat:@"-%@",sttr];
+                [str appendFormat:@"-%@",sttr];
         }
-//        NSLog(@"ss--%@",str);
+        //        NSLog(@"ss--%@",str);
         [_delegate pickViewChangedWithStr:str];
         
     }
@@ -278,7 +306,7 @@
     if ([_delegate respondsToSelector:@selector(pickViewChangedWithArray:)]) {
         [_delegate pickViewChangedWithArray:_selectedStrArray];
     }
-  
+    
 }
 
 
@@ -292,6 +320,7 @@
         NSString *rows = _countArray[i];
         [_picview selectRow:[rows integerValue] inComponent:i animated:YES];
     }
+    
 }
 
 /**
@@ -359,6 +388,8 @@
     
     [view addSubview:topView];
 }
+
+//- (void)setDatePicview:(UIDatePicker *)datePicview
 /**
  *  日期改变
  *

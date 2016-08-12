@@ -40,14 +40,14 @@
 
 
 /**
-*  创建datepick视图 默认当前时间
-*
-*  @param heigh     高度
-*  @param pickModel 视图类型
-*  @param sep       dateForm 字符串
-*
-*  @return return value description
-*/
+ *  创建datepick视图 默认当前时间
+ *
+ *  @param heigh     高度
+ *  @param pickModel 视图类型
+ *  @param sep       dateForm 字符串
+ *
+ *  @return return value description
+ */
 + (LTOVEPickView *)dateObjWithHeigh:(CGFloat)heigh andPickModel:(UIDatePickerMode)pickModel andDateFormStr:(NSString *)formStr;
 /**
  *  创建datepick视图 自定义时间
@@ -81,5 +81,13 @@
  *  @return return value description
  */
 + (LTOVEPickView *)showPickViewWithHeigh:(CGFloat)heigh andDateArray:(NSArray *)dateArray andInitSelectArray:(NSArray *)array;
+/**
+ *  调用这个方法返回pickView默认值
+ */
+- (void)initPickViewValue;
+/**
+ *  调用这个方法返回datePick的默认值
+ */
+- (void)initDatePickViewValue;
 @property (nonatomic,weak) id<datePickDelegate>delegate;
 @end
