@@ -16,6 +16,7 @@
 		9B5CCD9322BA16F400A0D1B9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B5CCD9222BA16F400A0D1B9 /* main.m */; };
 		9B5CCD9D22BA16F400A0D1B9 /* LTUtlTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B5CCD9C22BA16F400A0D1B9 /* LTUtlTests.m */; };
 		9B5CCDA822BA16F400A0D1B9 /* LTUtlUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B5CCDA722BA16F400A0D1B9 /* LTUtlUITests.m */; };
+		9B5CCDB822BA183F00A0D1B9 /* LTThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B5CCDB722BA183F00A0D1B9 /* LTThread.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +55,8 @@
 		9B5CCDA322BA16F400A0D1B9 /* LTUtlUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LTUtlUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B5CCDA722BA16F400A0D1B9 /* LTUtlUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTUtlUITests.m; sourceTree = "<group>"; };
 		9B5CCDA922BA16F400A0D1B9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9B5CCDB622BA183F00A0D1B9 /* LTThread.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTThread.h; sourceTree = "<group>"; };
+		9B5CCDB722BA183F00A0D1B9 /* LTThread.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTThread.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +107,7 @@
 		9B5CCD7F22BA16F300A0D1B9 /* LTUtl */ = {
 			isa = PBXGroup;
 			children = (
+				9B5CCDB522BA181E00A0D1B9 /* src */,
 				9B5CCD8022BA16F300A0D1B9 /* AppDelegate.h */,
 				9B5CCD8122BA16F300A0D1B9 /* AppDelegate.m */,
 				9B5CCD8322BA16F300A0D1B9 /* SceneDelegate.h */,
@@ -135,6 +139,15 @@
 				9B5CCDA922BA16F400A0D1B9 /* Info.plist */,
 			);
 			path = LTUtlUITests;
+			sourceTree = "<group>";
+		};
+		9B5CCDB522BA181E00A0D1B9 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				9B5CCDB622BA183F00A0D1B9 /* LTThread.h */,
+				9B5CCDB722BA183F00A0D1B9 /* LTThread.m */,
+			);
+			path = src;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -271,6 +284,7 @@
 				9B5CCD8222BA16F300A0D1B9 /* AppDelegate.m in Sources */,
 				9B5CCD9322BA16F400A0D1B9 /* main.m in Sources */,
 				9B5CCD8522BA16F300A0D1B9 /* SceneDelegate.m in Sources */,
+				9B5CCDB822BA183F00A0D1B9 /* LTThread.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
